@@ -1,0 +1,27 @@
+@keyframes click {
+    50%{
+        background-color: var(--btn-hover);
+        color: var(--white);
+        transform: scale(95%);
+        opacity: 1;
+    }
+}
+
+@keyframes jump {
+    50%{
+        color: var(--green);
+    }
+}
+
+@keyframes jump-l {
+    50%{
+        color: var(--red);
+    }
+}
+
+@keyframes show {
+    100%{
+        transform: scale(100%);
+        opacity: 1;
+    }
+}
