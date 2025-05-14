@@ -1,18 +1,21 @@
-import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { context } from '../../App';
 
 const ShowHint = () => {
-    const {setSHowHint, showHint} = useContext(context)
+    const { setSHowHint, showHint, hintAttemts } = useContext(context);
     const [txt, setTxt] = useState('');
 
     useEffect(()=>{
-        if (showHint?.start) {
-            setTxt(`Word starts with: [${(showHint?.start).toUpperCase()}] and ends with: [${(showHint?.end).toUpperCase()}]`)
+        if (showHint?.exhausted) {
+            setTxt("You've used up your hints");
+            return;
         }
-    }, [showHint?.start])
+        if (showHint?.start) {
+            setTxt(`(${hintAttemts} Left): Word starts with: [${(showHint?.start).toUpperCase()}] and ends with: [${(showHint?.end).toUpperCase()}]`)
+        }
+    }, [showHint?.start, showHint?.exhausted]);
 
     setTimeout(() => {
         setSHowHint('');

@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { context } from '../../App';
 
 const Failed = () => {
-    const {currentWord, scoreTotal, highscore} = useContext(context)
+    const { currentWord, scoreTotal, highscore, resetGame } = useContext(context)
     return (
         <div className="end">
             <div className="sc l">{scoreTotal}</div>
@@ -13,7 +13,7 @@ const Failed = () => {
                 </div>
                 <div className="cuw">{currentWord} ❌</div>
                 <div className="cuw">🤡Your Score: [{scoreTotal}] - Highscore: [{highscore}]😎</div>
-                <div className="btxs">
+                <div className="btxs" onClick={resetGame}>
                     <div className="btx no">End Game</div>
                 </div>
             </div>

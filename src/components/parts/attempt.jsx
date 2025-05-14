@@ -100,7 +100,7 @@ const Attempt = ({ setAttempts, attempts, done, cId, id }) => {
 
     return (
         <div className={`attempt ${id === cId && !isEnded && "current"} ${done && "done"}`}>
-            {id === cId ? <span>🟡</span> : done ? <span>🟢</span>:<span>⚪</span> }{word.map(i=> <InputChar key={i.id} i={i} done={done} func={fix} testCase={testCase} />)}
+            {id === cId ? <span>🟡</span> : done ? <span>🔴</span>:<span>⚪</span> }{word.map(i=> <InputChar key={i.id} i={i} done={done} func={fix} testCase={testCase} />)}
         </div>
     )
 }

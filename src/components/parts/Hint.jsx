@@ -5,11 +5,9 @@ import { useContext } from 'react';
 import { context } from '../../App';
 
 const Hint = () => {
-    const { setSHowHint, currentWord, isEnded } = useContext(context);
+    const { setSHowHint, currentWord, isEnded, hintAttemts, setHintAttempts, showHint, failed, solved } = useContext(context);
     const [wordBreak, setWordBreak] = useState([]);
-    const [hintTxt, setHintTxt] = useState([{ start: '', end: '' }]);
     const [canHint, setCanHint] = useState(false);
-    const [hintAttemts, setHintAttempts] = useState(100);
 
     const  [key, setKey] =useState("");
     const hintBtn = useRef();
@@ -34,6 +32,12 @@ const Hint = () => {
     }, [currentWord]);
 
     const getHit = () => {
+        console.log({
+            showHint,
+            canHint,
+            hintAttemts
+        })
+        if(showHint) return;
         if (canHint && hintAttemts > 0) {
             const arr = wordBreak;
             let startTxt = '';
@@ -53,11 +57,14 @@ const Hint = () => {
                     endTxt = `${arr[arr.length - 1]}`;
                     break;
             }
-            setHintTxt({ start: startTxt, end: endTxt });
             setHintAttempts(hintAttemts - 1);
             setSHowHint({ start: startTxt, end: endTxt });
+        } else {
+            setSHowHint({ start: "", end: "", exhausted: true });
         }
     }
+
+    if (failed && !solved) return null;
 
     return (
         <div className="hint" ref={hintBtn} onClick={getHit}>

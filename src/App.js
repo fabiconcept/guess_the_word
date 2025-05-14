@@ -24,6 +24,7 @@ const App = () => {
   const [scoreTotal, setScoreTotal] = useState(0);
   const [showHint, setSHowHint] = useState("");
   const [highscore, setHighscore] = useState(0);
+  const [hintAttemts, setHintAttempts] = useState(5);
   // const [level, setLevel] = useState('easy');
   const [word, setWord] = useState([]);
 
@@ -90,8 +91,28 @@ const App = () => {
     setIsEnded(failed);
   }, [failed]);
 
+  const resetGame = () => {
+    setCurrentWord("");
+    setKeyChar('');
+    setSolved(false);
+    setFailed(false);
+    setIsEnded(false);
+    setSHowHint("");
+    setHintAttempts(5);
+    setWord([]);
+    setBadWords([]);
+    setSemiBadWords([]);
+    setGoodWords([]);
+
+    setScore(0);
+    setScoreTotal(0);
+
+    nextWord();
+  };
+
+
   return (
-    <context.Provider value={{ goodWords, setGoodWords, semiBadWords, setSemiBadWords, badWords, setBadWords, highscore, setHighscore, setSHowHint, showHint,currentWord, word, alphabets, scoreTotal, keyChar, setKeyChar, score, setScore, solved, setSolved, isEnded, setIsEnded, failed, setFailed, nextWord }}>
+    <context.Provider value={{ showHint, resetGame, hintAttemts, setHintAttempts, goodWords, setGoodWords, semiBadWords, setSemiBadWords, badWords, setBadWords, highscore, setHighscore, setSHowHint,currentWord, word, alphabets, scoreTotal, keyChar, setKeyChar, score, setScore, solved, setSolved, isEnded, setIsEnded, failed, setFailed, nextWord }}>
       <div className="app">
         <div className="board">
           <ShowHint/>
