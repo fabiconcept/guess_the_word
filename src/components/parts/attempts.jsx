@@ -79,7 +79,7 @@ const Attempts = () => {
         <div className="screen">
             {solved && <Win status={sta} setSta={setSta} />}
             {failed && !solved && <Failed />}
-            {attempts?.map(item => (<Attempt key={item.id} attempts={attempts} setAttempts={setAttempts} done={attempts[item.id].done} cId={currentDiv} id={item.id} currWord={currentWord} />))}
+            {attempts?.map(item => (<Attempt key={item.id} attempts={attempts} setAttempts={setAttempts} isSolved={item.isSolved} done={attempts[item.id].done} cId={currentDiv} id={item.id} currWord={currentWord} />))}
         </div>
     )
 }

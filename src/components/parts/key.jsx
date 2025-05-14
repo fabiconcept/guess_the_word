@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { useRef } from 'react';
 import { context } from '../../App';
@@ -9,13 +9,7 @@ const Key = ({ i }) => {
 
     const [lightState, setLightState] = useState(0);
 
-    // let diff = badWords.filter(i=> !goodWords.includes(i));
-    //     diff = diff.filter(i=> !semiBadWords.includes(i));
-
     useEffect(()=>{
-        console.log(semiBadWords.includes(i))
-        console.log(goodWords.includes(i))
-        console.log(badWords.includes(i))
         if (semiBadWords.includes(i)) {
             setLightState(1);
         }

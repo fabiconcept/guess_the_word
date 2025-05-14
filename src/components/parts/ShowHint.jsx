@@ -15,12 +15,16 @@ const ShowHint = () => {
         if (showHint?.start) {
             setTxt(`(${hintAttemts} Left): Word starts with: [${(showHint?.start).toUpperCase()}] and ends with: [${(showHint?.end).toUpperCase()}]`)
         }
-    }, [showHint?.start, showHint?.exhausted]);
 
-    setTimeout(() => {
-        setSHowHint('');
-        setTxt('');
-    }, 5000);
+         // Set timeout inside useEffect
+        const timer = setTimeout(() => {
+            setSHowHint('');
+            setTxt('');
+        }, 5000);
+
+        // Clean up the timeout when component unmounts or when dependencies change
+        return () => clearTimeout(timer);
+    }, [showHint?.start, showHint?.exhausted]);
 
     return (
         <div className="hintDiv">

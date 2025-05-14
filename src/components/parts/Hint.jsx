@@ -32,11 +32,6 @@ const Hint = () => {
     }, [currentWord]);
 
     const getHit = () => {
-        console.log({
-            showHint,
-            canHint,
-            hintAttemts
-        })
         if(showHint) return;
         if (canHint && hintAttemts > 0) {
             const arr = wordBreak;
@@ -65,6 +60,7 @@ const Hint = () => {
     }
 
     if (failed && !solved) return null;
+    if (solved) return null;
 
     return (
         <div className="hint" ref={hintBtn} onClick={getHit}>

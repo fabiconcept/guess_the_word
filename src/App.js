@@ -25,7 +25,7 @@ const App = () => {
   const [showHint, setSHowHint] = useState("");
   const [highscore, setHighscore] = useState(0);
   const [hintAttemts, setHintAttempts] = useState(5);
-  // const [level, setLevel] = useState('easy');
+  const [level, setLevel] = useState('easy');
   const [word, setWord] = useState([]);
 
   const [badWords, setBadWords] = useState([]);
@@ -69,9 +69,9 @@ const App = () => {
   }
 
   useEffect(()=>{
-    changeLevel("mid");
+    changeLevel(level);
     initiateLocalHighscore();
-  }, []);
+  }, [level]);
 
   useEffect(()=>{
     word.length > 0 && nextWord();

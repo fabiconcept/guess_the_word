@@ -1,11 +1,11 @@
-import React from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { context } from '../../App';
 import InputChar from './inputChar';
 
-const Attempt = ({ setAttempts, attempts, done, cId, id }) => {
+
+const Attempt = ({ setAttempts, attempts, done, cId, id, isSolved }) => {
     const {keyChar, currentWord, setSolved, isEnded} = useContext(context);
     const [word, setWord] = useState([]);
 
@@ -37,7 +37,7 @@ const Attempt = ({ setAttempts, attempts, done, cId, id }) => {
         if (word.length > 0 && word[word.length-1].char !== '') {
             setAttempts(attempts.map(i=>{
                 if (i.id === id) {
-                    return {...i, done: true}
+                    return {...i, done: true, }
                 }
                 return i;
             }));
@@ -57,6 +57,12 @@ const Attempt = ({ setAttempts, attempts, done, cId, id }) => {
                     });
     
                     if (canProceed) {
+                        setAttempts(attempts.map(i => {
+                            if (i.id === id) {
+                                return { ...i, isSolved: true }
+                            }
+                            return i;
+                        }));
                         setSolved(true);
                         setCorrectArr([])
                     }
@@ -97,10 +103,33 @@ const Attempt = ({ setAttempts, attempts, done, cId, id }) => {
         setCorrectArr([...correctArr, params]);
     }
 
+    const renderStatusIndicator = () => {
+        if (id === cId) {
+            return <span>🟡</span>;
+        } else if (done) {
+            return isSolved ? <span>✅</span> : <span>🔴</span>;
+        } else {
+            return <span>⚪</span>;
+        }
+    };
+
+    const renderWordCharacters = () => {
+        return word.map(char => (
+            <InputChar
+                key={char.id}
+                i={char}
+                done={done}
+                func={fix}
+                testCase={testCase}
+            />
+        ));
+    };
+
 
     return (
         <div className={`attempt ${id === cId && !isEnded && "current"} ${done && "done"}`}>
-            {id === cId ? <span>🟡</span> : done ? <span>🔴</span>:<span>⚪</span> }{word.map(i=> <InputChar key={i.id} i={i} done={done} func={fix} testCase={testCase} />)}
+            {renderStatusIndicator()}
+            {renderWordCharacters()}
         </div>
     )
 }
