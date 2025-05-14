@@ -1,4 +1,3 @@
-import React from 'react';
 import { useContext } from 'react';
 import { context } from '../../App';
 import Key from './key';

@@ -1,2 +1,2 @@
 const eng = "qwertyuiopasdfghjklzxcvbnm";
-export const alphabets = (eng.split('').sort());
+export const alphabets = (eng.split(''));

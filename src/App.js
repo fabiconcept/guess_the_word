@@ -5,7 +5,7 @@ import Attempts from './components/parts/attempts';
 import Hint from './components/parts/Hint';
 import Keyboard from './components/parts/keyboard';
 import ShowHint from './components/parts/ShowHint';
-import Win from './components/parts/win';
+// import Win from './components/parts/win';
 import { alphabets } from './components/resource/alphabets';
 import { toMoney } from './components/resource/tools';
 import level_easy from './components/resource/words/level_easy';
@@ -24,7 +24,7 @@ const App = () => {
   const [scoreTotal, setScoreTotal] = useState(0);
   const [showHint, setSHowHint] = useState("");
   const [highscore, setHighscore] = useState(0);
-  const [level, setLevel] = useState('easy');
+  // const [level, setLevel] = useState('easy');
   const [word, setWord] = useState([]);
 
   const [badWords, setBadWords] = useState([]);
@@ -89,9 +89,6 @@ const App = () => {
   useEffect(()=>{
     setIsEnded(failed);
   }, [failed]);
-
-  
-
 
   return (
     <context.Provider value={{ goodWords, setGoodWords, semiBadWords, setSemiBadWords, badWords, setBadWords, highscore, setHighscore, setSHowHint, showHint,currentWord, word, alphabets, scoreTotal, keyChar, setKeyChar, score, setScore, solved, setSolved, isEnded, setIsEnded, failed, setFailed, nextWord }}>
