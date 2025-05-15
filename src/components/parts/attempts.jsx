@@ -10,7 +10,7 @@ import Win from './win';
 const Attempts = () => {
     const { currentWord, setKeyChar, solved, isEnded, setScore, setFailed, failed, setGoodWords, setSemiBadWords, setBadWords } = useContext(context);
     const [init, setInit] = useState(false);
-    const [trys, setTrys] = useState(0)
+    const [trys, setTrys] = useState(0);
     const [currentDiv, setCurrentDiv] = useState(0);
     const [sta, setSta] = useState('');
 
@@ -33,6 +33,8 @@ const Attempts = () => {
             }else{
                 setScore(50);
             }
+
+            return;
         }
 
         if (!isEnded) {
