@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { context } from '../../App';
 
 const Win = ({status, setSta}) => {
-    const {nextWord, currentWord, score, highscore, setHighscore, scoreTotal } = useContext(context);
+    const {nextWord, currentWord, score, highscore, setHighscore, scoreTotal, setLevel } = useContext(context);
     const  [key, setKey] =useState("");
     const nextBtn = useRef();
 
@@ -49,7 +49,26 @@ const Win = ({status, setSta}) => {
 
     window.addEventListener("keyup", e=>{
         setKey(e.key);
-    })
+    });
+
+    const handleNextPress = () => {
+        const randomNumber = Math.floor(Math.random() * 3) + 1;
+
+        switch (randomNumber) {
+            case 1:
+                setLevel("easy")
+            case 2:
+                setLevel("mid")
+            case 3:
+                setLevel("hard")
+            default:
+                setLevel("mid")
+        }
+
+        setTimeout(() => {
+            nextWord();
+        }, 200);
+    }
 
     return (
         <div className="end">
@@ -66,7 +85,7 @@ const Win = ({status, setSta}) => {
                 </div>}
                 <div className="cuw">{currentWord} ✔</div>
                 <div className="btxs">
-                    <div ref={nextBtn} className="btx" onClick={nextWord}>Next word</div>
+                    <div ref={nextBtn} className="btx" onClick={handleNextPress}>Next word</div>
                 </div>
                 <br />
                 <br />

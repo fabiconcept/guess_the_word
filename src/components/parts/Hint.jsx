@@ -27,6 +27,7 @@ const Hint = () => {
     }, [isEnded])
 
     useEffect(() => {
+        if (!currentWord) return;
         const word = currentWord.split('');
         setWordBreak(word);
     }, [currentWord]);

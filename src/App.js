@@ -112,7 +112,7 @@ const App = () => {
 
 
   return (
-    <context.Provider value={{ showHint, resetGame, hintAttemts, setHintAttempts, goodWords, setGoodWords, semiBadWords, setSemiBadWords, badWords, setBadWords, highscore, setHighscore, setSHowHint,currentWord, word, alphabets, scoreTotal, keyChar, setKeyChar, score, setScore, solved, setSolved, isEnded, setIsEnded, failed, setFailed, nextWord }}>
+    <context.Provider value={{ showHint, resetGame, hintAttemts, setLevel, setHintAttempts, goodWords, setGoodWords, semiBadWords, setSemiBadWords, badWords, setBadWords, highscore, setHighscore, setSHowHint,currentWord, word, alphabets, scoreTotal, keyChar, setKeyChar, score, setScore, solved, setSolved, isEnded, setIsEnded, failed, setFailed, nextWord }}>
       <div className="app">
         <div className="board">
           <ShowHint/>
